@@ -2,6 +2,9 @@ package com.example.database.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
@@ -33,6 +36,7 @@ public class Regione implements Serializable {
 	private String nome;
 
 	//bi-directional many-to-one association to Provincia
+	@JsonIgnore
 	@OneToMany(mappedBy="regione", fetch=FetchType.EAGER)
 	private List<Provincia> province;
 
@@ -112,8 +116,19 @@ public class Regione implements Serializable {
 
 	@Override
 	public String toString() {
-		return String.format("Regione [id=%s, latitudine=%s, longitudine=%s, nome=%s]", id, latitudine, longitudine,
-				nome);
+		StringBuilder builder = new StringBuilder();
+		builder.append("Regione [id=");
+		builder.append(id);
+		builder.append(", latitudine=");
+		builder.append(latitudine);
+		builder.append(", longitudine=");
+		builder.append(longitudine);
+		builder.append(", nome=");
+		builder.append(nome);
+		builder.append(", province=");
+		builder.append(province);
+		builder.append("]");
+		return builder.toString();
 	}
 
 }

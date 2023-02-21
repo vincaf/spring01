@@ -53,7 +53,7 @@
 	</table>
 
 	<h3>Inserimento Cliente</h3>
-    <form action="/clienti" method="POST">
+    <form action="/mvc-clienti" method="POST">
 		<div>
 			<label for="nome">Nome</label>
 			<input type="text" id="nome" name="nome">

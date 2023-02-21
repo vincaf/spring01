@@ -17,7 +17,7 @@ import com.example.demo.repositories.ClientiRepository;
 import com.example.demo.services.ClientiService;
 
 @Controller
-@RequestMapping("/clienti")
+@RequestMapping("/mvc-clienti")
 public class ClientiController {
 	
 	private static final Logger log = LogManager.getLogger();
