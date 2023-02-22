@@ -41,4 +41,13 @@ public class ClientiService {
         repository.deleteById(id);
     }
 	
+	public Boolean update(Cliente cliente) {
+		Optional<Cliente> clienteUp = this.findById(cliente.getIdCliente());		
+		if (clienteUp.isEmpty()) {
+			return false;
+		}
+		this.save(cliente);
+		return true;
+	}
+	
 }
