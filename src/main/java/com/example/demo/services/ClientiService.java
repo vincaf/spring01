@@ -37,6 +37,8 @@ public class ClientiService {
 		return repository.count();
 	}
 	
-	
+	public void deleteById(Integer id) {
+        repository.deleteById(id);
+    }
 	
 }

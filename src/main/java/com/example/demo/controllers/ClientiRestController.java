@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
@@ -60,10 +61,16 @@ public class ClientiRestController {
 		return new ResponseEntity<>(cliente, HttpStatus.OK);
 	}
 
-	@DeleteMapping
-	public ResponseEntity<Boolean> deleteById(@RequestParam Cliente cliente) {
+	@DeleteMapping("/delete/{id}")
+	public ResponseEntity<String> deleteById(@PathVariable Integer id) {
 		log.trace("Start del metodo deleteById");
-		return new ResponseEntity<>(false, HttpStatus.OK);
+		try {
+			service.deleteById(id);
+			return ResponseEntity.ok("Cliente con ID " + id + " eliminato con successo.");
+		} catch (EmptyResultDataAccessException e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente con ID " + id + " non trovato.");
+		}
+
 	}
 
 	@PutMapping
