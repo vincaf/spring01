@@ -1,6 +1,7 @@
 package com.example.demo.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -27,5 +28,15 @@ public class ClientiService {
 	public List<Cliente> findAll(){
 		return repository.findAll();
 	}
+	
+	public Optional<Cliente> findById(Integer id) {
+		return repository.findById(id);
+	}
+	
+	public long count() {
+		return repository.count();
+	}
+	
+	
 	
 }
