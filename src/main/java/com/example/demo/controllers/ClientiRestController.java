@@ -32,8 +32,11 @@ import com.example.demo.services.ClientiService;
 public class ClientiRestController {
 	private static final Logger log = LogManager.getLogger();
 
-	@Autowired
-	ClientiService service;
+	/* @Autowired */ ClientiService service;
+
+	public ClientiRestController(ClientiService service) {
+		this.service = service;
+	}
 
 	@GetMapping
 	public ResponseEntity<List<Cliente>> findAll(Model model) {
