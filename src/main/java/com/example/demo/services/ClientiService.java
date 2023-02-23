@@ -37,7 +37,7 @@ public class ClientiService {
 		return repository.count();
 	}
 	
-	public void deleteById(Integer id) {
+	public void deleteById2(Integer id) {
         repository.deleteById(id);
     }
 	
@@ -48,6 +48,23 @@ public class ClientiService {
 		}
 		this.save(cliente);
 		return true;
+	}
+	
+	public Integer deleteById(Integer id) {
+		
+		Optional<Cliente> cliente = this.findById(id);		
+		if (cliente.isEmpty()) {
+			return -1;
+		}
+		
+		repository.deleteById(id);
+		//vvv potrebbe essere superfluo
+		cliente= this.findById(id);
+		if(cliente.isPresent()) {
+			return -2;
+		}
+		return 0;
+		
 	}
 	
 }
