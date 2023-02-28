@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +58,7 @@ public class ClientiRestController {
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
+	@Transactional
 	@PostMapping
 	public ResponseEntity< Cliente > create(@RequestBody Cliente cliente) {
 		log.trace("Start del metodo create");

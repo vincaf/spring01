@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.database.entity.Cliente;
 import com.example.demo.repositories.ClientiRepository;
@@ -18,6 +19,7 @@ public class ClientiService {
 	
 	@Autowired ClientiRepository repository;
 	
+	@Transactional
 	public Cliente save (Cliente cliente) {
 		log.trace("Start del metodo save");
 		cliente = repository.save(cliente);
@@ -41,6 +43,7 @@ public class ClientiService {
         repository.deleteById(id);
     }
 	
+	@Transactional
 	public Boolean update(Cliente cliente) {
 		Optional<Cliente> clienteUp = this.findById(cliente.getIdCliente());		
 		if (clienteUp.isEmpty()) {
@@ -50,6 +53,7 @@ public class ClientiService {
 		return true;
 	}
 	
+	@Transactional
 	public Integer deleteById(Integer id) {
 		
 		Optional<Cliente> cliente = this.findById(id);		
